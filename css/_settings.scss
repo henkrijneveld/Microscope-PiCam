@@ -1,0 +1,24 @@
+#settings {
+  width: 100%;
+  .cf-settings {
+    padding-left: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+  .nospin::-webkit-inner-spin-button, .no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
+  .nospin {
+    -moz-appearance:textfield !important;
+  }
+  .title {
+    font-size: smaller;
+  }
+  input, select, option {
+    font-size: 16px;
+  }
+}
+

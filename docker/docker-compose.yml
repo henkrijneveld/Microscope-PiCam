@@ -1,0 +1,29 @@
+version: '2'
+
+# NOTES:
+# for use of arg, env etc: https://vsupalov.com/docker-arg-env-variable-guide/
+# a empty data directory must exist with user / group equal to hostuser (1000:1000)
+# the site must be placed into www/html
+
+services:
+  web:
+    privileged: true # enable mount capability. security risk they say
+    hostname: microscope.dev
+    build:
+      context: web/.
+      args:
+        loglevel: trace8 # debug, trace8, crit
+        uiduser: 1000
+        giduser: 1000
+    tmpfs:
+    - /tmp/webcam
+    ports:
+    - "80:80"
+    - "443:443"
+    devices:
+    - "/dev/video0:/dev/video0"
+    volumes:
+    - ../../.:/var/www/html
+    environment:
+#      XDEBUG_CONFIG: "remote_host=192.168.43.107"
+      XDEBUG_CONFIG: "remote_host=192.168.3.10"

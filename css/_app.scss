@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+* {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  box-sizing: border-box;
+}
+
+a.buttonstyle {
+  display: inline-block;
+  margin: 10px 0 10px 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+  &:hover {
+    cursor: pointer;
+    background-color: #ddd;
+  }
+}
+
+#navbar {
+  border-bottom: 1px solid black;
+}
+
+.container {
+  padding: 10px;
+  display: grid;
+  grid-template-rows: auto;
+  justify-items: left;
+}
+
+.layout-all {
+  grid-template-columns: auto 360px 410px;
+  grid-template-areas:
+    "area-camera area-settings area-file"
+}
+
+.layout-filename {
+  grid-template-columns: auto 410px;
+  grid-template-areas:
+    "area-camera area-file";
+  .settings {
+    display: none;
+  }
+}
+
+.layout-settings {
+  grid-template-columns: auto 410px;
+  grid-template-areas:
+    "area-camera area-settings";
+  .file {
+    display: none;
+  }
+}
+
+.layout-camera {
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "area-camera";
+  .file {
+    display: none;
+  }
+  .settings {
+    display: none;
+  }
+}
+
+.camera {
+  grid-area: area-camera;
+  justify-self: center;
+}
+
+.file {
+  grid-area: area-file;
+}
+
+.settings {
+  grid-area: area-settings;
+}
+
+
+#applogo {
+  font-weight: bold;
+  display: inline-block;
+  float: right;
+  margin: 10px;
+}

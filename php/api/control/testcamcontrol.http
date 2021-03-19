@@ -1,0 +1,9 @@
+PUT http://cam1/html/poc/api/control/camcontrol.php
+Accept: application/json
+
+{
+"command": "setbrightness",
+"value": 50
+}
+
+###

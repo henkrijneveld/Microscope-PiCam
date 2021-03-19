@@ -1,0 +1,8 @@
+.*.swp      
+*~
+.idea
+.sass-cache
+media
+
+config/config.overrides.js
+

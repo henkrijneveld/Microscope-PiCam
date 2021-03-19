@@ -1,0 +1,14 @@
+.numberinput {
+  .nospin::-webkit-inner-spin-button, .no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
+  .nospin {
+    -moz-appearance:textfield !important;
+  }
+  .title {
+    font-size: smaller;
+  }
+  margin-bottom: 10px;
+}
+
