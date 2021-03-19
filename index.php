@@ -16,7 +16,7 @@
       <div id="navbar">
         <div id="savefile">
           <save-file :filename="fname"></save-file>
-          <a class="buttonstyle" target="_blank" href="/camera/php/filemanager">Shots</a>
+          <a class="buttonstyle" target="_blank" href="php/filemanager">Shots</a>
           <a class="buttonstyle" @click="selectAll()">All panes</a>
           <a class="buttonstyle" @click="selectFilename()">Filename</a>
           <a class="buttonstyle" @click="selectSettings()">Camera settings</a>

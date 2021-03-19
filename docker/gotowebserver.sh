@@ -1,1 +1,1 @@
-docker exec -it docker_web_1 /bin/bash
+docker exec -it gemcam_server /bin/bash

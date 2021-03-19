@@ -8,13 +8,15 @@ version: '2'
 services:
   web:
     privileged: true # enable mount capability. security risk they say
-    hostname: microscope.dev
+    hostname: gemcam_server.dev
     build:
       context: web/.
       args:
         loglevel: trace8 # debug, trace8, crit
         uiduser: 1000
         giduser: 1000
+    container_name:
+      gemcam_server
     tmpfs:
     - /tmp/webcam
     ports:
@@ -25,5 +27,5 @@ services:
     volumes:
     - ../../.:/var/www/html
     environment:
-#      XDEBUG_CONFIG: "remote_host=192.168.43.107"
-      XDEBUG_CONFIG: "remote_host=192.168.3.10"
+      XDEBUG_CONFIG: "remote_host=192.168.43.205"
+#      XDEBUG_CONFIG: "remote_host=192.168.3.10"

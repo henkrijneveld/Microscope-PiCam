@@ -31,8 +31,6 @@ RUN apt-get -y install \
     perl
 
 RUN a2enmod rewrite \
-    && a2ensite default-ssl \
-    && a2enmod ssl \
     && a2enmod headers \
     && a2enmod perl \
     && a2enmod expires
