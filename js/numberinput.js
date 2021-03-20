@@ -42,7 +42,7 @@ Vue.component("number-input", {
         updatevalue: function() {
             this.$emit("update:value", this.val);
             axios
-              .put(this.$cfg.hostname + this.$cfg.controlendpoint, { command: this.command, value: this.val })
+              .put(this.$cfg.controlendpoint, { command: this.command, value: this.val })
               .then(response => {
                 console.log("succes: "+ response.data);
               })

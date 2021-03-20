@@ -1,12 +1,11 @@
 <?PHP
-// This is a php file so whenever I like to add some php logic,
-// it is easily done.
+// Maybe we will need this someday
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Testfoto</title>
+  <title>Gem Camera</title>
   <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="js/vue.js"></script>
   <script type="text/javascript" src="js/axios.min.js"></script>

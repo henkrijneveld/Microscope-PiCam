@@ -2,7 +2,7 @@
 include_once "../../autoloader.php"; // somewhat clunky, acceptable for the time being
 
 use api\control\RaspiCamControl as CamControl;
-use api\Config as Cfg;
+use api\Config as Config;
 
 class controlapi
 {
@@ -108,7 +108,7 @@ class controlapi
 	// so client has to update both values at start
 	private function setchannel($channelname, $value)
 	{
-		$fp = fopen(Cfg::$mempath."/".$channelname, "w");
+		$fp = fopen(Config::getMemPath()."/".$channelname, "w");
 		if (!$fp)
 			$this->error(423, "error setting cache for ".$channelname);
 
@@ -119,9 +119,9 @@ class controlapi
 	// kludge: value -1: error will die.
 	private function getchannel($channelname)
 	{
-		if (!file_exists(Cfg::$mempath."/".$channelname))
+		if (!file_exists(Config::getMemPath()."/".$channelname))
 			return -1;
-		$fp = fopen(Cfg::$mempath."/".$channelname, "r");
+		$fp = fopen(Config::getMemPath()."/".$channelname, "r");
 		if ($fp) {
 			$value = intval(fread($fp,10));
 			fclose($fp);

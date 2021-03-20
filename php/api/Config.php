@@ -4,9 +4,27 @@ namespace api;
 
 class Config
 {
-	public static $mempath = "/dev/shm/gemcam"; // memory mapped files: transient to protect the SD card from wear
-	public static $mediadir = "/gemcam/media"; // file where the high res images are saved, relative to documentroot
-	public static $fifofile = "/gemcam/system/FIFO"; // FIFO file for communication with RASPIMJPEG relative to documentroot
+    public static function getMemPath()
+    {
+        return("/dev/shm/gemcam");
+    }
+
+    // gets the directory of the index.php
+    public static function getUriDir()
+    {
+        return(substr(dirname(__FILE__), 0, -1 * strlen("php/api")));
+    }
+
+    public static function getMediaDir()
+    {
+        return Config::getUriDir()."/media";
+    }
+
+
+    public static function getFifoFile()
+    {
+        return Config::getUriDir()."/system/FIFO";
+    }
 }
 
 

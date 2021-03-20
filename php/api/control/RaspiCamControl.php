@@ -2,7 +2,7 @@
 
 namespace api\control;
 
-use api\Config as Cfg;
+use api\Config as Config;
 
 // @TODO: Move all magic values to a configuration file.
 // for the moment the default for RPI_... is used
@@ -11,7 +11,7 @@ class RaspiCamControl
 {
 	private function send(string $command): bool
 	{
-		$pipe = fopen($_SERVER["DOCUMENT_ROOT"].Cfg::$fifofile, "w");
+		$pipe = fopen(Config::getFifoFile(), "w");
 		if ($pipe) {
 			fwrite($pipe, $command . "\n");
 			fclose($pipe);

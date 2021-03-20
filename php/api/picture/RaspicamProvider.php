@@ -3,7 +3,7 @@
 namespace api\picture;
 
 use api\control\RaspiCamControl as CamControl;
-use api\Config as Cfg;
+use api\Config as Config;
 
 class RaspicamProvider implements ProviderInterface
 {
@@ -11,17 +11,16 @@ class RaspicamProvider implements ProviderInterface
     {
 	    header("Access-Control-Allow-Origin: *");
 	    header("Content-Type: image/jpeg");
-	    readfile(Cfg::$mempath."/cam.jpg");
+	    readfile(Config::getMemPath()."/cam.jpg");
     }
 
-    // @TODO: logic to only get the file, return it, and delete it from media
-	  function getShotImage($filename)
+    function getShotImage($filename)
     {
 	    $cc = new CamControl;
 
 	    $cc->takeImage();
 
-	    $files = scandir( $_SERVER["DOCUMENT_ROOT"].Cfg::$mediadir, SCANDIR_SORT_DESCENDING);
+	    $files = scandir( $_SERVER["DOCUMENT_ROOT"].Config::getMediaDir(), SCANDIR_SORT_DESCENDING);
 	    foreach ($files as $file) {
 		    if (!strchr($file, ".th."))
 			    break;
@@ -30,11 +29,11 @@ class RaspicamProvider implements ProviderInterface
 		    header("Access-Control-Allow-Origin: *");
 		    header("Content-Type: image/jpeg");
 		    if ($filename) {
-		    	$oldname = $_SERVER["DOCUMENT_ROOT"].Cfg::$mediadir."/".$file;
-		    	$fname = $_SERVER["DOCUMENT_ROOT"].Cfg::$mediadir."/".$filename;
+		    	$oldname = $_SERVER["DOCUMENT_ROOT"].Config::getMediaDir()."/".$file;
+		    	$fname = $_SERVER["DOCUMENT_ROOT"].Config::getMediaDir()."/".$filename;
 		    	rename($oldname, $fname);
 		    } else {
-			    $fname =  $_SERVER["DOCUMENT_ROOT"].Cfg::$mediadir."/".$file;
+			    $fname =  $_SERVER["DOCUMENT_ROOT"].Config::getMediaDir()."/".$file;
 		    }
 		    readfile($fname);
 	    } else {

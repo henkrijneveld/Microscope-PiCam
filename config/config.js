@@ -6,13 +6,10 @@ Vue.prototype.$cfg = {
     reduction: ['','0.3R','0.5R','1.0R','2.0R'],
     barlow: ['','0.5B','2.0B'],
     polarizer: ['','Pol', 'An', 'Pol+An'],
-    immersion: ['','Water', 'Oil', 'Immersed'],
-    // general settings
-    hostname: "/gemcam",
-    // api endpoints
-    streamEndpoint: "/php/api/picture/streampic.php",
-    shotEndpoint: "/php/api/picture/shotpic.php",
-    controlendpoint: "/php/api/control/camcontrol.php",
+    immersion: ['','Water', 'Oil', 'Immersion'],
+    streamEndpoint: "php/api/picture/streampic.php",
+    shotEndpoint: "php/api/picture/shotpic.php",
+    controlendpoint: "php/api/control/camcontrol.php",
     // inputcontrols
     brightness: {
         minval: 0,
@@ -66,5 +63,12 @@ Vue.prototype.$cfg = {
         ]
     }
 }
+
+if (location.hostname === "localhost") {
+    Vue.prototype.$cfg.streamEndpoint += "?demo=1";
+    Vue.prototype.$cfg.shotEndpoint += "?demo=1";
+    Vue.prototype.$cfg.controlendpoint += "?demo=1";
+}
+
 
 

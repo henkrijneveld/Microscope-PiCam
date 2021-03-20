@@ -49,7 +49,7 @@ Vue.component("zoomable-image", {
       if (this.doupdates && this.imgIdle) {
         this.imgIdle = false;
         axios
-          .get(this.$cfg.hostname + this.$cfg.streamEndpoint, {responseType: 'arraybuffer'})
+          .get(this.$cfg.streamEndpoint, {responseType: 'arraybuffer'})
           .then(response => {
             this.lastrawpic = btoa(
               new Uint8Array(response.data).reduce(

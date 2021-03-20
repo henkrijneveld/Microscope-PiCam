@@ -26,7 +26,7 @@ Vue.component("select-input", {
         updatevalue: function() {
             this.$emit("update:selected", this.sel);
             axios
-              .put(this.$cfg.hostname + this.$cfg.controlendpoint, { command: this.command, value: this.sel })
+              .put(this.$cfg.controlendpoint, { command: this.command, value: this.sel })
               .then(response => {
                 console.log("succes: "+ response.data);
               })

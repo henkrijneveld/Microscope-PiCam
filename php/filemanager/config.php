@@ -50,11 +50,13 @@ $default_timezone = 'Etc/UTC'; // UTC
 
 // Root path for file manager
 // use absolute path of directory i.e: '/var/www/folder' or $_SERVER['DOCUMENT_ROOT'].'/folder'
-$root_path = $_SERVER['DOCUMENT_ROOT'].'/gemcam/media';
+$len = -1 * strlen("php/filemanager");
+$root_path = substr(dirname(__FILE__), 0, $len) . "media";
 
 // Root url for links in file manager.Relative to $http_host. Variants: '', 'path/to/subfolder'
 // Will not working if $root_path will be outside of server document root
-$root_url = '/gemcam/media';
+$offset = -1 * strlen($_SERVER['DOCUMENT_ROOT']);
+$root_url = substr($root_path, $offset);
 
 // Server hostname. Can set manually if wrong
 $http_host = $_SERVER['HTTP_HOST'];
