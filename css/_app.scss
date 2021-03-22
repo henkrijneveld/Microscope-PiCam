@@ -12,7 +12,7 @@ body {
 
 a.buttonstyle {
   display: inline-block;
-  margin: 10px 0 10px 10px;
+  margin: 10px 0 10px 4px;
   border: 1px solid grey;
   border-radius: 5px;
   padding: 5px 10px;
@@ -23,6 +23,11 @@ a.buttonstyle {
     background-color: #ddd;
   }
 }
+
+a.buttonstyle:first-child {
+  margin-left: 10px;
+}
+
 
 #navbar {
   border-bottom: 1px solid black;
@@ -42,7 +47,7 @@ a.buttonstyle {
 }
 
 .layout-filename {
-  grid-template-columns: auto 410px;
+  grid-template-columns: auto 390px;
   grid-template-areas:
     "area-camera area-file";
   .settings {
@@ -50,8 +55,9 @@ a.buttonstyle {
   }
 }
 
+
 .layout-settings {
-  grid-template-columns: auto 410px;
+  grid-template-columns: auto 390px;
   grid-template-areas:
     "area-camera area-settings";
   .file {

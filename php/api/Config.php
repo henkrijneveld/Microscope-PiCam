@@ -17,7 +17,7 @@ class Config
 
     public static function getMediaDir()
     {
-        return Config::getUriDir()."/media";
+        return Config::getUriDir()."media";
     }
 
 

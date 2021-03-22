@@ -1,15 +1,15 @@
 #!/bin/bash
 
-sudo killall raspimjpeg 2>/dev/null
+sudo killall raspigemcam 2>/dev/null
 
 # create camera directory in transient memory
-sudo mkdir -p /dev/shm/camera
-sudo chown www-data:www-data /dev/shm/camera
-sudo chmod 777 /dev/shm/camera
+sudo mkdir -p /dev/shm/gemcam
+sudo chown www-data:www-data /dev/shm/gemcam
+sudo chmod 777 /dev/shm/gemcam
 
-# make sure raspimjpeg is dead
-sleep 1;
+# make sure raspigemcam is dead
+sleep 2;
 
 # start again
-sudo su -c 'raspimjpeg > /dev/null &' www-data
+sudo su -c 'system/raspigemcam > /dev/null &' www-data
 

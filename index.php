@@ -14,12 +14,13 @@
     <div id="microscopeapp">
       <div id="navbar">
         <div id="savefile">
-          <save-file :filename="fname"></save-file>
+          <save-file :filename="fname">Shoot & Download</save-file>
           <a class="buttonstyle" target="_blank" href="php/filemanager">Shots</a>
-          <a class="buttonstyle" @click="selectAll()">All panes</a>
-          <a class="buttonstyle" @click="selectFilename()">Filename</a>
-          <a class="buttonstyle" @click="selectSettings()">Camera settings</a>
-          <a class="buttonstyle" @click="selectCamera()">Camera fullscreen</a>
+          &nbsp;&nbsp;
+          <a class="buttonstyle" @click="selectAll()">All</a>
+          <a class="buttonstyle" @click="selectFilename()">File</a>
+          <a class="buttonstyle" @click="selectSettings()">Settings</a>
+          <a class="buttonstyle" @click="selectCamera()">Camera only</a>
           <div id="applogo">Camera on {{hostname}}</div>
         </div>
       </div>

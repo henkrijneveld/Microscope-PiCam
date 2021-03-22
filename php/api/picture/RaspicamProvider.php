@@ -19,21 +19,20 @@ class RaspicamProvider implements ProviderInterface
 	    $cc = new CamControl;
 
 	    $cc->takeImage();
-
-	    $files = scandir( $_SERVER["DOCUMENT_ROOT"].Config::getMediaDir(), SCANDIR_SORT_DESCENDING);
+	    $files = scandir( Config::getMediaDir(), SCANDIR_SORT_DESCENDING);
 	    foreach ($files as $file) {
-		    if (!strchr($file, ".th."))
+		    if (!strchr($file, ".th.") && strchr($file, ".jpg"))
 			    break;
 	    }
 	    if (strchr($file, ".jpg")) {
 		    header("Access-Control-Allow-Origin: *");
 		    header("Content-Type: image/jpeg");
 		    if ($filename) {
-		    	$oldname = $_SERVER["DOCUMENT_ROOT"].Config::getMediaDir()."/".$file;
-		    	$fname = $_SERVER["DOCUMENT_ROOT"].Config::getMediaDir()."/".$filename;
+		    	$oldname = Config::getMediaDir()."/".$file;
+		    	$fname = Config::getMediaDir()."/".$filename;
 		    	rename($oldname, $fname);
 		    } else {
-			    $fname =  $_SERVER["DOCUMENT_ROOT"].Config::getMediaDir()."/".$file;
+			    $fname = Config::getMediaDir()."/".$file;
 		    }
 		    readfile($fname);
 	    } else {
