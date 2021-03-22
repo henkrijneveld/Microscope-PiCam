@@ -11,11 +11,12 @@ fi
 sudo mknod /var/www/gemcam/system/FIFO p
 sudo chmod 666 /var/www/gemcam/system/FIFO
 
-# this is a 1-1 copy from RPi_Cam with the user config changed to this installation
+# @TODO: change raspigemcam.c that the global config can be a parameter at startup
+# @TODO: add a startup parameter as base path to raspigemcam.
 sudo cp raspigemcam.global.cfg /etc/raspigemcam
 
 # copy the program to system
-sudo cp raspigemcam ../systemcd system
+sudo cp raspigemcam ../system
 sudo chmod +x ../system/raspigemcam
 
 # setting groups of sitefiles
