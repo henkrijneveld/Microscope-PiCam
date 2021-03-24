@@ -166,7 +166,7 @@ Vue.component("histo-gram", {
 <div class="card">
     <input  style="margin-right: 5px;" 
             type="button" 
-            v-bind:value="'Brightness'"
+            v-bind:value="'Totals'"
             v-bind:style="brightnessHistogram ? 'color: red;' : 'color: inherit;'"
             v-on:click="update(true)"/>
     <input  style="margin-right: 5px;" 

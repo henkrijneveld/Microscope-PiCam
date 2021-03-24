@@ -10,7 +10,7 @@ body {
   box-sizing: border-box;
 }
 
-a.buttonstyle {
+.buttonstyle {
   display: inline-block;
   margin: 10px 0 10px 4px;
   border: 1px solid grey;
@@ -24,7 +24,7 @@ a.buttonstyle {
   }
 }
 
-a.buttonstyle:first-child {
+.buttonstyle:first-child {
   margin-left: 10px;
 }
 
@@ -54,7 +54,6 @@ a.buttonstyle:first-child {
     display: none;
   }
 }
-
 
 .layout-settings {
   grid-template-columns: auto 390px;

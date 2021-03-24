@@ -1,3 +1,5 @@
+var EventBus = new Vue();
+
 var vm = new Vue({
     el: '#microscopeapp',
     data: {

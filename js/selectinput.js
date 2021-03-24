@@ -22,6 +22,12 @@ Vue.component("select-input", {
       this.sel = this.selected;
       this.updatevalue();
     },
+    mounted: function() {
+      var self = this;
+      EventBus.$on("updateserver", function() {
+        self.updatevalue();
+      })
+    },
     methods: {
         updatevalue: function() {
             this.$emit("update:selected", this.sel);

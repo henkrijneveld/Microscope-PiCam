@@ -32,6 +32,12 @@ Vue.component("number-input", {
       this.val = this.value;
       this.updatevalue();
     },
+    mounted: function() {
+      var self = this;
+      EventBus.$on("updateserver", function() {
+        self.updatevalue();
+      })
+    },
     methods: {
         changevalue: function(amount) {
             this.val += amount;

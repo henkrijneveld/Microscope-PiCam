@@ -25,6 +25,12 @@ class Config
     {
         return Config::getUriDir()."/system/FIFO";
     }
+
+    public static function getGemcamPath()
+		{
+			$len = -1 * strlen("/php/api");
+			return substr(dirname(__FILE__), 0, $len);
+		}
 }
 
 

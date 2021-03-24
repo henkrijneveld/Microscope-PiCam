@@ -21,7 +21,7 @@ class RaspicamProvider implements ProviderInterface
 	    $cc->takeImage();
 	    $files = scandir( Config::getMediaDir(), SCANDIR_SORT_DESCENDING);
 	    foreach ($files as $file) {
-		    if (!strchr($file, ".th.") && strchr($file, ".jpg"))
+		    if (!strchr($file, ".th.") && (substr($file, 0, 3) === "im_"))
 			    break;
 	    }
 	    if (strchr($file, ".jpg")) {

@@ -8,10 +8,61 @@ Vue.component("settings-pane", {
             redchannel: 393,
             bluechannel: 123,
             defaultwb: "off",
-            manualwb: ""
+            manualwb: "ledringtop"
+        }
+    },
+    created: function() {
+        this.brightness = this.getFromLocalStorage("brightness", true, 50);
+        this.sharpness = this.getFromLocalStorage("sharpness", true, 0);
+        this.saturation = this.getFromLocalStorage("saturation", true, 0);
+        this.contrast = this.getFromLocalStorage("contrast", true, 0);
+        this.redchannel = this.getFromLocalStorage("redchannel", true, 393);
+        this.bluechannel = this.getFromLocalStorage("bluechannel", true, 123);
+        this.defaultwb = this.getFromLocalStorage("defaultwb", false, "off");
+        this.manualwb = this.getFromLocalStorage("manualwb", false, "ledringtop");
+    },
+    watch: {
+        defaultwb: function (newwb, oldwb) {
+            window.localStorage.setItem("defaultwb", newwb.toString())
+            if (newwb === "off" && oldwb !== "off") {
+                // this enforces an update to the server.
+                // after a specific preset whitebalance is choosen, the red and blue are set to their defaults (150)
+                // this results in an always green image
+                this.$refs.blue.updatevalue();
+                this.$refs.red.updatevalue();
+            }
+        },
+        brightness: function (newer, old) {
+            window.localStorage.setItem("brightness", newer.toString())
+        },
+        contrast: function (newer, old) {
+            window.localStorage.setItem("contrast", newer.toString())
+        },
+        saturation: function (newer, old) {
+            window.localStorage.setItem("saturation", newer.toString())
+        },
+        sharpness: function (newer, old) {
+            window.localStorage.setItem("sharpness", newer.toString())
+        },
+        manualwb: function (newer, old) {
+            window.localStorage.setItem("manualwb", newer.toString())
+        },
+        redchannel: function (newer, old) {
+            window.localStorage.setItem("redchannel", newer.toString())
+        },
+        bluechannel: function (newer, old) {
+            window.localStorage.setItem("bluechannel", newer.toString())
         }
     },
     methods: {
+        getFromLocalStorage(keyname, isInt, defval) {
+            if (window.localStorage.getItem(keyname) !== null)
+                if (isInt)
+                    return(parseInt(window.localStorage.getItem(keyname)));
+                else
+                    return(window.localStorage.getItem(keyname));
+            return defval;
+        },
         updatemanualwb: function(selectwb) {
             selected = this.$cfg.manualwb.options.find((option) => {
                 return option.value === selectwb;
@@ -37,8 +88,8 @@ Vue.component("settings-pane", {
   </option>
 </select>
 </div>
-<number-input v-bind:value.sync="redchannel" v-bind="$cfg.redchannel">Red channel (0 .. +800)</number-input>
-<number-input v-bind:value.sync="bluechannel" v-bind="$cfg.bluechannel">Blue channel (0 .. +800)</number-input>
+<number-input ref="red" v-bind:value.sync="redchannel" v-bind="$cfg.redchannel">Red channel (0 .. +800)</number-input>
+<number-input ref="blue" v-bind:value.sync="bluechannel" v-bind="$cfg.bluechannel">Blue channel (0 .. +800)</number-input>
 </div>
 </div>
 `

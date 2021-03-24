@@ -34,16 +34,31 @@ class controlapi
 		$request = json_decode($request, true);
 		if (!array_key_exists("command", $request))
 			$this->error(400, "command missing");
-		if (!method_exists($this, $request["command"]))
-			$this->error(400, "unknown command: ".$request["command"]);
-		call_user_func(array($this, $request["command"]), $request);
-		echo "OK";
+		if (method_exists($this, $request["command"])) {
+			call_user_func(array($this, $request["command"]), $request);
+			echo $request["command"].": OK";
+			return;
+		}
+		$this->error(400, "unknown command: ".$request["command"]);
 	}
 
 	private function valuecheck($request)
 	{
 		if (!array_key_exists("value", $request))
 			$this->error(400, "value missing");
+	}
+
+	function restart($request)
+	{
+		$output = array();
+		chdir(Config::getGemcamPath());
+		if (exec("bash ".Config::getGemcamPath()."/start.sh", $output, $result) !== false) {
+			if (!$result) {
+				return;
+			}
+			$this->error(502, "Error restart: ".implode(', ', $output));
+		}
+		$this->error(500, "Error restart: start.sh could not run completely (wrong directories?)");
 	}
 
 	function setbrightness($request)

@@ -4,6 +4,13 @@
 #
 # software is intended for dedicate PI attached to camera
 
+# make sure www-data is member of sudo
+# security risk when cam is used in public network
+sudo adduser www-data sudo > /dev/null
+sudo rm /etc/sudoers.d/RaspiGemcam
+sudo cp RaspiGemcam.sudo /etc/sudoers.d/RaspiGemcam
+sudo chmod 440 /etc/sudoers.d/RaspiGemcam
+
 # create the control pipe
 if [ -e /var/www/gemcam/system/FIFO ]; then
   sudo rm /var/www/gemcam/system/FIFO

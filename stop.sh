@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo killall raspimjpeg 2>/dev/null
+sudo killall raspigemcam 2>/dev/null
