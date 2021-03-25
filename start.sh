@@ -16,7 +16,7 @@ then
     exit 1
 fi
 
-sudo chown www-data:www-data /dev/shm/gemcam
+sudo chown -R www-data:www-data /dev/shm/gemcam
 if [ $? -ne 0 ];
 then
     echo "Could not chown /dev/shm/gemcam"
@@ -34,7 +34,8 @@ fi
 sleep 1;
 
 # start again
-sudo su -c 'system/raspigemcam > /dev/null &' www-data
+cd system
+sudo su -c './raspigemcam -bp /var/www/gemcam > /dev/null &' www-data
 if [ $? -ne 0 ];
 then
     echo "Could not start system/raspigemcam"

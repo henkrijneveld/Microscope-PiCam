@@ -20,7 +20,7 @@ sudo chmod 666 /var/www/gemcam/system/FIFO
 
 # @TODO: change raspigemcam.c that the global config can be a parameter at startup
 # @TODO: add a startup parameter as base path to raspigemcam.
-sudo cp raspigemcam.global.cfg /etc/raspigemcam
+sudo cp raspigemcam.cfg ../system
 
 # copy the program to system
 sudo cp raspigemcam ../system
