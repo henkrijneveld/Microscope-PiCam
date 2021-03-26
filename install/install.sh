@@ -4,6 +4,15 @@
 #
 # software is intended for dedicate PI attached to camera
 
+
+if [[ "${PWD}" =~ home ]];
+then
+  echo "Don't run this script from development!"
+  echo "It will mess with your groups"
+  exit 1
+fi
+
+
 # make sure www-data is member of sudo
 # security risk when cam is used in public network
 sudo adduser www-data sudo > /dev/null
@@ -11,24 +20,27 @@ sudo rm /etc/sudoers.d/RaspiGemcam
 sudo cp RaspiGemcam.sudo /etc/sudoers.d/RaspiGemcam
 sudo chmod 440 /etc/sudoers.d/RaspiGemcam
 
-# create the control pipe
-if [ -e /var/www/gemcam/system/FIFO ]; then
-  sudo rm /var/www/gemcam/system/FIFO
-fi
-sudo mknod /var/www/gemcam/system/FIFO p
-sudo chmod 666 /var/www/gemcam/system/FIFO
-
-# @TODO: change raspigemcam.c that the global config can be a parameter at startup
-# @TODO: add a startup parameter as base path to raspigemcam.
-sudo cp raspigemcam.cfg ../system
 
 # copy the program to system
 sudo cp raspigemcam ../system
 sudo chmod +x ../system/raspigemcam
+sudo cp raspigemcam.cfg ../system
+
+pushd .. > /dev/null
+
+# create the control pipe
+if [ -e system/FIFO ]; then
+  sudo rm system/FIFO
+fi
+sudo mknod system/FIFO p
+sudo chmod 666 system/FIFO
 
 # setting groups of sitefiles
-sudo chgrp -R www-data /var/www/gemcam
+sudo chgrp -R www-data ${PWD}
 
 # make directories writable
-sudo chmod 775 /var/www/gemcam/media
-sudo chmod 775 /var/www/gemcam/config
+sudo chmod 775 ${PWD}/media
+sudo chmod 775 ${PWD}/config
+
+popd install > /dev/null
+
