@@ -24,8 +24,10 @@ Vue.component("number-input", {
     },
     watch: {
       value: function(newVal, oldVal) { // watch it
-        this.val = this.value;
-        this.updatevalue();
+        if (newVal !== oldVal) {
+          this.val = this.value;
+          this.updatevalue();
+        }
       }
     },
     created: function () {
@@ -43,10 +45,9 @@ Vue.component("number-input", {
             this.val += amount;
             if (this.val < this.minval) this.val = this.minval;
             if (this.val > this.maxval) this.val = this.maxval;
-            this.updatevalue();
+            this.$emit("update:value", this.val);
         },
         updatevalue: function() {
-            this.$emit("update:value", this.val);
             axios
               .put(this.$cfg.controlendpoint, { command: this.command, value: this.val })
               .then(response => {

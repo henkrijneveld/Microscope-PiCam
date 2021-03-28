@@ -23,6 +23,7 @@
           <a class="buttonstyle" @click="selectCamera()">Camera only</a>
           &nbsp;&nbsp;
           <re-start>Start camera</re-start>
+          <shut-down>Shutdown PI</shut-down>
           <div id="applogo">Camera on {{hostname}}</div>
         </div>
       </div>
@@ -50,6 +51,7 @@
   <script type="text/javascript" src="js/settings.js"></script>
   <script type="text/javascript" src="js/save-file.js"></script>
   <script type="text/javascript" src="js/restart.js"></script>
+  <script type="text/javascript" src="js/shutdown.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

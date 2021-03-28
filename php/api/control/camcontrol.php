@@ -61,6 +61,20 @@ class controlapi
 		$this->error(500, "Error restart: start.sh could not run completely (wrong directories?)");
 	}
 
+	function shutdown($request)
+	{
+		$output = array();
+		chdir(Config::getGemcamPath());
+		if (exec("bash ".Config::getGemcamPath()."/shutdown.sh", $output, $result) !== false) {
+			if (!$result) {
+				return;
+			}
+			$this->error(502, "Error shutdown: ".implode(', ', $output));
+		}
+		$this->error(500, "Error shutdown: shutdown.sh could not run completely (wrong directories?)");
+	}
+
+
 	function setbrightness($request)
 	{
 		$this->valuecheck($request);

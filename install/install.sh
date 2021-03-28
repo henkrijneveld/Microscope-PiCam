@@ -42,5 +42,5 @@ sudo chgrp -R www-data ${PWD}
 sudo chmod 775 ${PWD}/media
 sudo chmod 775 ${PWD}/config
 
-popd install > /dev/null
+popd > /dev/null
 
