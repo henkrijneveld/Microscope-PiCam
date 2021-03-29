@@ -8,6 +8,9 @@ sudo killall raspigemcam 2>/dev/null
 #    exit 1
 #fi
 
+# make sure raspigemcam is dead
+sleep 1;
+
 # create camera directory in transient memory
 sudo mkdir -p /dev/shm/gemcam
 if [ $? -ne 0 ];
@@ -30,12 +33,10 @@ then
     exit 1
 fi
 
-# make sure raspigemcam is dead
-sleep 1;
-
 # start again
+base=${PWD}
 cd system
-sudo su -c './raspigemcam -bp /var/www/gemcam > /dev/null &' www-data
+sudo su -c './raspigemcam -bp ${base} > /dev/null &' www-data
 if [ $? -ne 0 ];
 then
     echo "Could not start system/raspigemcam"

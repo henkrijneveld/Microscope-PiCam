@@ -1,12 +1,12 @@
 # Gemcam: PI HQ Cam with a microscope
 
-Webbased application for the Raspberry Pi for using the 12 MP HQ camera for taking stills, especially tailored
-for the use with a microscope.
+Webbased application for the Raspberry Pi and the 12 MP HQ camera for taking stills, especially tailored
+for the use with a (gemmological) microscope.
 
 ![Alt](docs/connectedtomicroscope-200px.jpg?raw=true )
 
 It is intended to be operated in headless mode over wifi. In this way, only the usb-powercord is attached,
-which will not affect the mechanical stability (as an ethernet cable probable will).
+which will not affect the mechanical stability of the camera, reducing vibrations (as an ethernet cable probable will).
 
 ## Pre requisites
 
@@ -51,19 +51,26 @@ git pull
 
 When using a microscope with standard foto software, I ran into the inconvenience that it was necessary to
 note seperately the material, the magnification and other parameters. Later on I had to change the filename, leading
-to mistakes and a very cumbursome process. Gemcam let you specify the filename with alle relevant information.
+to mistakes and a very cumbursome process. Gemcam let you specify the filename with alle relevant information. This results
+in meaningfull filenames like: garnet-1.5x-0.5R-inclusion-20210321-210304.jpg. Files are downloaded to your system,
+and stored in a mediafolder on the Pi itself.
 
-The second problem is focussing. A gemmological stereo microscope has objectives somewhat tilted from the 
+The second problem using the camera's is focussing. A gemmological stereo microscope has objectives somewhat tilted from the 
 horizontal plane to achieve the 3D effect. In gemcam, you see a preview (in reduced resolution, 1024px vs 4060px).
 However, with a 400% magnification it is possible to get good focussing.
 
 The whitebalance is an other issue. Through the microscope you can seldom use the balancing out of the box. Gemcam
 let you manually select the gains in red and blue (green stays constant as part of the design of the HQ camera).
 By carefully obsering the image, comparing it to the image in the microscope it can be fine tuned to achieve the 
-right colors. Note that whiute balancing is processed on the camera, so 10 or 12 bits are used (raw processing).
+right colors. Note that white balancing is processed on the camera, so 10 or 12 bits are used (raw processing).
 
-The other controls can be set to get the most detail. Look at the histogram to avoid clipping.
+The other controls can be set to get the most detail and dynamic range. Look at the live-histogram to avoid clipping.
 
+![Alt](docs/bumblbee-fov3mm.jpg?raw=true )
+Air bubbles in resin filled cavity of a bumlbee jasper (horizontal field of view 3mm).
+
+Not that the primary driver for the quality of the picture is the reduction lens between microscope and camera. I use
+a rather cheap model. Before I finished gemcam, it was less noticable...
 
 ## Development
 
@@ -94,7 +101,7 @@ in the camera modul itself, so when it is not attached, nothing will happen in t
 
 None, anybody on the same (w)lan can access the camera.
 
-The application is meant to be connected to a pc in the direct neighbourhood of the microscope/camera. All security
+The application is meant to be connected to a pc in the direct vicinity of the microscope/camera. All security
 must be implemented by using a dedicated wifi wlan. For technical reasons, the apache user (www-data) runs with
 full sudo rights, no password necessary. Making this secure would require a lot of extra effort with no pay-off
 in this use case. Highly recommended to not make this application available on a broader network.
@@ -109,7 +116,7 @@ in this use case. Highly recommended to not make this application available on a
     in the browser (F12 key), and inspect the log in the console.
 - Shutter speed, analog gain and digital gain are not implemented yet. They work in conjunction, and the latter
 two are not implemented in the camera driver (raspigemcam), yet.
-- On firefox, after longer use I noticed sometimes the network performance of the application degraded. 
+- On firefox, after longer use I noticed sometimes the network performance of the application degrades. 
 
 # Acknowledgements
 
@@ -121,7 +128,7 @@ The gemcamdriver is from https://github.com/henkrijneveld/userland, subdir raspi
 non-backwards compatible adapted copy from raspimjpeg. For more information, see the readme
 accompanying the aforementioned repository.
 
-The vue script is from veujs.org
+The vue script is from vuejs.org
 
 The general idea of gemcam is based on RPi_Cam_Web_Interface (https://github.com/silvanmelchior/RPi_Cam_Web_Interface).
 This is a very generic application with a lot of functionality of no use for still fotography. I considered the userinterface
