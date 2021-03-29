@@ -67,7 +67,8 @@ right colors. Note that white balancing is processed on the camera, so 10 or 12 
 The other controls can be set to get the most detail and dynamic range. Look at the live-histogram to avoid clipping.
 
 ![Alt](docs/bumblbee-fov3mm.jpg?raw=true )
-Air bubbles in resin filled cavity of a bumlbee jasper (horizontal field of view 3mm).
+
+git aAir bubbles in resin filled cavity of a bumlbee jasper (horizontal field of view 3mm).
 
 Not that the primary driver for the quality of the picture is the reduction lens between microscope and camera. I use
 a rather cheap model. Before I finished gemcam, it was less noticable...
