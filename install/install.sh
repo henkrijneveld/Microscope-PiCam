@@ -52,3 +52,6 @@ sudo chmod 775 ${PWD}/config
 
 popd > /dev/null
 
+# notice to reboot if first time install
+echo "If this is a first-time install, please reboot PI"
+
