@@ -21,7 +21,7 @@ Vue.component("save-file", {
     },
     template: `
 <div class="savefile">
-<a class="buttonstyle" :download="filename" :href="$cfg.shotEndpoint + '?fn=' + getFullname()"><slot></slot></a>
+<a class="buttonstyle" :download="getFullname()" :href="$cfg.shotEndpoint + '?fn=' + getFullname()"><slot></slot></a>
 </div>
 `
 })

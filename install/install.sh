@@ -5,8 +5,9 @@
 #
 # software is intended for dedicate PI attached to camera
 
-# giove www-data its shell
-sudo -u www-data bash
+# Give www-data his bash shell and other authorizations
+sudo sed -i "s/^www-data:x.*/www-data:x:33:33:www-data:\/var\/www:\/bin\/bash/g" /etc/passwd
+sudo usermod -aG video www-data
 
 if [[ "${PWD}" =~ home ]];
 then
