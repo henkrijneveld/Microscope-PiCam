@@ -108,6 +108,15 @@ class controlapi
 		$this->valuecheck($request);
 		if (!$this->cc->setWhiteBalance($request["value"]))
 			$this->error(400, "error in ".__FUNCTION__);
+
+		// whitebalance can mess with blue and red channels. So use cached values when available
+		if ($request["value"] === "off") {
+			$red = $this->getchannel("red");
+			$blue = $this->getchannel("blue");
+			if ($red >= 0 && $blue >= 0) {
+				$this->cc->setchannels($red, $blue);
+			}
+		}
 	}
 
 	function setredchannel($request)

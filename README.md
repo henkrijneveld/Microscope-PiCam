@@ -3,7 +3,9 @@
 Webbased application for the Raspberry Pi and the 12 MP HQ camera for taking stills, especially tailored
 for the use with a (gemmological) microscope.
 
-![Alt](docs/connectedtomicroscope-200px.jpg?raw=true )
+![Alt](docs/connectedtomicroscope-300.jpg?raw=true )
+
+*Connection to microscope trinoculair tube.*
 
 It is intended to be operated in headless mode over wifi. In this way, only the usb-powercord is attached,
 which will not affect the mechanical stability of the camera, reducing vibrations (as an ethernet cable probable will).
@@ -66,12 +68,12 @@ right colors. Note that white balancing is processed on the camera, so 10 or 12 
 
 The other controls can be set to get the most detail and dynamic range. Look at the live-histogram to avoid clipping.
 
-![Alt](docs/bumblbee-fov3mm.jpg?raw=true )
-
-git aAir bubbles in resin filled cavity of a bumlbee jasper (horizontal field of view 3mm).
-
 Not that the primary driver for the quality of the picture is the reduction lens between microscope and camera. I use
 a rather cheap model. Before I finished gemcam, it was less noticable...
+
+![Alt](docs/screenshot-emerald.jpg?raw=true )
+
+*In use with a synthetic hydrothermal emerald.*
 
 ## Development
 
@@ -106,6 +108,11 @@ The application is meant to be connected to a pc in the direct vicinity of the m
 must be implemented by using a dedicated wifi wlan. For technical reasons, the apache user (www-data) runs with
 full sudo rights, no password necessary. Making this secure would require a lot of extra effort with no pay-off
 in this use case. Highly recommended to not make this application available on a broader network.
+
+![Alt](docs/bumblbee-fov3mm.jpg?raw=true )
+
+*Air bubbles in resin filled cavity of a bumlbee jasper (horizontal field of view 3mm).*
+
 
 ## Known issues and limitations
 

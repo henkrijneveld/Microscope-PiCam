@@ -36,14 +36,14 @@ fi
 # start again
 base=${PWD}
 cd system
-sudo su -c './raspigemcam -bp ${base} > /dev/null &' www-data
+sudo su -c './raspigemcam -bp '"$base"' > /dev/null &' www-data
 if [ $? -ne 0 ];
 then
     echo "Could not start system/raspigemcam"
     exit 1
 fi
 
-sleep 1;
+sleep 2;
 
 exit 0
 

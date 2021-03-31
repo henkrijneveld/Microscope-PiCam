@@ -12,6 +12,8 @@ Vue.component("file-name", {
     }
   },
   computed: {
+    // filename is a string containing the relevant information
+    // it is the base the definitive name will be constructed somewhere else
     filename() {
       filename = "";
       if (this.name) filename += this.name + "-";
@@ -21,10 +23,7 @@ Vue.component("file-name", {
       if (this.polarizer) filename += this.polarizer + "-";
       if (this.immersion) filename += this.immersion + "-";
       if (this.extra) filename += this.extra + "-";
-      fd = new Date();
-      filename += filedate = fd.getFullYear().toString().slice(-2)+("0"+(fd.getMonth()+1)).slice(-2)+("0"+(fd.getDate())).slice(-2)+"-"+("0"+fd.getHours()).slice(-2)+("0"+fd.getMinutes()).slice(-2)+("0"+fd.getSeconds()).slice(-2);
-//      this.$emit("setfname", filename);
-      return (filename + ".jpg");
+      return (filename);
     }
   },
   updated: function() {

@@ -88,7 +88,9 @@ class RaspiCamControl
 
 		$cm = "wb ".$value;
 
-		return $this->send($cm);
+		if (!$this->send($cm)) return false;
+		sleep(1); // white balance needs time to settle
+		return true;
 	}
 }
 
