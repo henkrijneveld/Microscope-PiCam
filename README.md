@@ -10,24 +10,48 @@ for the use with a (gemmological) microscope.
 It is intended to be operated in headless mode over wifi. In this way, only the usb-powercord is attached,
 which will not affect the mechanical stability of the camera, reducing vibrations (as an ethernet cable probable will).
 
-## Pre requisites
+## Setting up the PI 
 
 - Raspberry Pi 3B+ (or better)
-- Raspberry PI OS (32bit), with ssh and wifi enabled (https://www.raspberrypi.org/documentation/installation/installing-images/)
+- Raspberry PI OS (32bit), preferrably the light version without desktop ("headless mode")
+  (https://www.raspberrypi.org/documentation/installation/installing-images/)
+- Enable SSH (https://www.raspberrypi.org/documentation/remote-access/ssh/), by placing an empty file "ssh" in the
+  boot partition of the SD card
+- Enable headless wifi (https://www.raspberrypi.org/documentation/configuration/wireless/headless.md)
+- NOTE: Allthough headless configuration should be possible, it is my experience that first setup should be done 
+    with keyboard and monitor connected, and then use:
+  ```
+  sudo raspi-config
+  ```
+  This way errors by yourself, or by the PI, or errors in the OS are
+    much easier to detect.
+- to enable setting a simple password, use: 
+    ```
+    sudo passwd pi
+    ```
+- Start the PI from the SD Card.
+- NOTE: It is sometimes a pain to find the IP of the PI. Usually I will bind the MAC adress to the IP in the router, 
+    and use a symbolic name in the HOSTS file on your PC.
 - Git installed on the PI (https://linuxize.com/post/how-to-install-git-on-raspberry-pi/)
-- HQ camera attached, enabled and tested with raspistill (https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspistill.md)
+- HQ camera attached, enabled and tested with raspistill (https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspistill.md). 
+  Normally, enabling the camera in raspi-config, and the test:
+  ```
+  raspistill -t 1 -o cam.jpg
+  ``` 
+  will do. If no errors are shown, and a file cam.jpg is written, all is well.
 - Apache and PHP installed (https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md)
 
-## Installation
+## Installation gemcam
 
 Clone the repository inside the webroot (normally /var/www/html). In the webroot on the pi enter:
 ```
-git clone https://github.com/henkrijneveld/Gemcam.git gemcam
+cd /var/www/html
+sudo git clone https://github.com/henkrijneveld/Gemcam.git gemcam
 ```
 Go to the install directory and execute the install script
 ```
 cd install
-./install.sh
+sudo ./install.sh
 ```
 
 Go to your browser:
@@ -58,15 +82,17 @@ in meaningfull filenames like: garnet-1.5x-0.5R-inclusion-20210321-210304.jpg. F
 and stored in a mediafolder on the Pi itself.
 
 The second problem using the camera's is focussing. A gemmological stereo microscope has objectives somewhat tilted from the 
-horizontal plane to achieve the 3D effect. In gemcam, you see a preview (in reduced resolution, 1024px vs 4060px).
-However, with a 400% magnification it is possible to get good focussing.
+horizontal plane to achieve the 3D effect. In gemcam, you see a preview (in reduced resolution: 1024px. Full picture
+resolution will be 4056px). However, with a 400% magnification it is possible to get good focussing.
 
 The whitebalance is an other issue. Through the microscope you can seldom use the balancing out of the box. Gemcam
 let you manually select the gains in red and blue (green stays constant as part of the design of the HQ camera).
 By carefully obsering the image, comparing it to the image in the microscope it can be fine tuned to achieve the 
 right colors. Note that white balancing is processed on the camera, so 10 or 12 bits are used (raw processing).
+A grey card (with white, 18% grey, and black) can be helpfull.
 
 The other controls can be set to get the most detail and dynamic range. Look at the live-histogram to avoid clipping.
+Sometimes the camera will need less light then the eye, so also play with the bbrightness controls on your microscope. 
 
 Not that the primary driver for the quality of the picture is the reduction lens between microscope and camera. I use
 a rather cheap model. Before I finished gemcam, it was less noticable...
