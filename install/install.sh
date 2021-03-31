@@ -5,6 +5,9 @@
 #
 # software is intended for dedicate PI attached to camera
 
+# giove www-data its shell
+sudo -u www-data bash
+
 if [[ "${PWD}" =~ home ]];
 then
   echo "Don't run this script from development!"
@@ -39,7 +42,8 @@ sudo mknod system/FIFO p
 sudo chmod 666 system/FIFO
 
 # setting groups of sitefiles
-sudo chgrp -R www-data ${PWD}
+# sudo chgrp -R www-data ${PWD}
+sudo chown -R www-data:www-data .
 
 # make directories writable
 sudo chmod 775 ${PWD}/media
