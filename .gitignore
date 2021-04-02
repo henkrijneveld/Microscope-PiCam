@@ -3,7 +3,7 @@
 .idea
 .sass-cache
 media
-gemcam/system/FIFO
+system/FIFO
 
 config/config.overrides.js
 config/raspigemcam.overrides.js
