@@ -1,4 +1,4 @@
-# Gemcam: PI HQ Cam with a microscope
+# Microscope-PiCam: Use HQ Cam with microscope
 
 Webbased application for the Raspberry Pi and the 12 MP HQ camera for taking stills, especially tailored
 for the use with a (gemmological) microscope.
@@ -41,12 +41,13 @@ which will not affect the mechanical stability of the camera, reducing vibration
   will do. If no errors are shown, and a file cam.jpg is written, all is well.
 - Apache and PHP installed (https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md)
 
-## Installation gemcam
+## Installation Microscope-PiCam
 
-Clone the repository inside the webroot (normally /var/www/html). In the webroot on the pi enter:
+Clone the repository inside the webroot (normally /var/www/html). 
+In the webroot on the pi enter (note: instead of gemcam you can choose any name you wish):
 ```
 cd /var/www/html
-sudo git clone https://github.com/henkrijneveld/Gemcam.git gemcam
+sudo git clone https://github.com/henkrijneveld/Microscope-PiCam.git gemcam
 ```
 Go to the install directory and execute the install script
 ```
@@ -67,10 +68,12 @@ Any user configuration can be done in config/config.overrides.js and config/rasp
 
 ## Upgrading
 
-Go to the installation directory from the webroot, and enter a git pull. Example:
+Go to the installation directory from the webroot, do a git pull, and run install again. Example:
 ```
 cd /var/www/html/gemcam
-git pull
+sudo git pull
+cd install
+sudo ./install.sh
 ```
 
 ## Usage
