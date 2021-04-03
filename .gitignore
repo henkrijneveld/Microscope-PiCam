@@ -6,6 +6,6 @@ media
 system/FIFO
 
 config/config.overrides.js
-config/raspigemcam.overrides.js
+config/raspigemcam.overrides.cfg
 
 
