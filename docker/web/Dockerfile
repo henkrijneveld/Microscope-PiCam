@@ -36,6 +36,10 @@ RUN a2enmod rewrite \
     && a2enmod expires
 
 RUN a2enmod cgid
+RUN a2enmod autoindex
+
+#send the logfles somewhere, and allow directory index visible
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # dedicated changes to php.ini
 RUN echo upload_max_filesize = 32M >> /usr/local/etc/php/php.ini
