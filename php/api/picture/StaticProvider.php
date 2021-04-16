@@ -11,7 +11,7 @@ class StaticProvider implements ProviderInterface
 			#$pic1 = "doorvallend-tourmalijn-0.5-4.5-2xobj-small.jpg";
 			#$pic2 = "other-small.jpg";
 
-		  $pic1 = "doorvallend-tourmalijn-0.5-4.5-2xobj-small.jpg";
+		  $pic1 = "other.jpg";
 		  $pic2 = "other-small.jpg";
 
 			$pic = time() % 2 ? $pic1 : $pic2;
