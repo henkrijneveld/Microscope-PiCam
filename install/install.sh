@@ -5,6 +5,8 @@
 #
 # software is intended for dedicate PI attached to camera
 
+export PERL_BADLANG=0
+
 pushd .. > /dev/null
 
 if [[ "${PWD}" =~ home ]];
