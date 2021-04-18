@@ -5,9 +5,7 @@
 #
 # software is intended for dedicate PI attached to camera
 
-export PERL_BADLANG=0
-
-pushd .. > /dev/null
+pushd .. > /dev/null 2>&1
 
 if [[ "${PWD}" =~ home ]];
 then
@@ -28,16 +26,20 @@ then
     cp install/raspigemcam.overrides.cfg config/raspigemcam.overrides.cfg
   fi
 else
+  echo "start install"
   # Give www-data his bash shell and other authorizations
-  sudo sed -i "s/^www-data:x.*/www-data:x:33:33:www-data:\/var\/www:\/bin\/bash/g" /etc/passwd > /dev/null
+  sudo sed -i "s/^www-data:x.*/www-data:x:33:33:www-data:\/var\/www:\/bin\/bash/g" /etc/passwd > /dev/null 2>&1
   sudo usermod -aG video www-data
 
   # make sure www-data is member of sudo
   # security risk when cam is used in public network
-  sudo adduser www-data sudo > /dev/null
-  sudo rm /etc/sudoers.d/RaspiGemcam
+  sudo adduser www-data sudo > /dev/null 2>&1
+  sudo rm /etc/sudoers.d/RaspiGemcam > /dev/null 2>&1
   sudo cp install/RaspiGemcam.sudo /etc/sudoers.d/RaspiGemcam
   sudo chmod 440 /etc/sudoers.d/RaspiGemcam
+
+  # make pi user part of www-data group so it can write in the web directory
+  sudo adduser pi www-data > /dev/null 2>&1
 
   # copy the program to system
   sudo cp install/raspigemcam system
@@ -69,9 +71,8 @@ else
     sudo cp install/raspigemcam.overrides.cfg config/raspigemcam.overrides.cfg
   fi
 
-  # make directories writable
-  sudo chmod 775 ${PWD}/media
-  sudo chmod 775 ${PWD}/config
+  # make directories writable for everyone in the www-data group
+  sudo chmod 775 ${PWD}
 
   # notice to reboot if first time install
   echo "If this is a first-time install, please reboot PI"
