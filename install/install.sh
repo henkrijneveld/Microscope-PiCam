@@ -68,7 +68,7 @@ else
   fi
 
   if [[ ! -f config/raspigemcam.overrides.cfg ]]; then
-    sudo cp install/raspigemcam.overrides.cfg config/raspigemcam.overrides.cfg
+    sudo cp install/raspigemcam.overrides.cfg config/raspigemcam.overrides.cfggir
   fi
 
   # make directories writable for everyone in the www-data group
