@@ -5,6 +5,8 @@
 #
 # software is intended for dedicate PI attached to camera
 
+export PERL_BADLANG=0
+
 pushd .. > /dev/null
 
 if [[ "${PWD}" =~ home ]];
@@ -27,20 +29,20 @@ then
   fi
 else
   # Give www-data his bash shell and other authorizations
-  sudo sed -i "s/^www-data:x.*/www-data:x:33:33:www-data:\/var\/www:\/bin\/bash/g" /etc/passwd
+  sudo sed -i "s/^www-data:x.*/www-data:x:33:33:www-data:\/var\/www:\/bin\/bash/g" /etc/passwd > /dev/null
   sudo usermod -aG video www-data
 
   # make sure www-data is member of sudo
   # security risk when cam is used in public network
   sudo adduser www-data sudo > /dev/null
   sudo rm /etc/sudoers.d/RaspiGemcam
-  sudo cp RaspiGemcam.sudo /etc/sudoers.d/RaspiGemcam
+  sudo cp install/RaspiGemcam.sudo /etc/sudoers.d/RaspiGemcam
   sudo chmod 440 /etc/sudoers.d/RaspiGemcam
 
   # copy the program to system
-  sudo cp raspigemcam ../system
-  sudo chmod +x ../system/raspigemcam
-  sudo cp raspigemcam.cfg ../system
+  sudo cp install/raspigemcam system
+  sudo chmod +x system/raspigemcam
+  sudo cp install/raspigemcam.cfg system
 
   # create the control pipe
   if [ -e system/FIFO ]; then
