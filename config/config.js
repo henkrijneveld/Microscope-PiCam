@@ -1,15 +1,19 @@
 // configuration
 Vue.prototype.$cfg = {
     // picture settings
-    magn: ['0','1','2','3','4'],
+    magn: ['0','1','2','3','4','5','6','7','8','9'],
     magnfraction: ['0','1','2','3','4','5','6','7','8','9'],
-    reduction: ['','0.3R','0.5R','1.0R','2.0R'],
+    reduction: ['','0.3R','0.3-0.5VR','0.5R','1.0R'],
     barlow: ['','0.5B','2.0B'],
     polarizer: ['','Pol', 'An', 'Pol+An'],
     immersion: ['','Water', 'Oil', 'Immersion'],
+    sequence: ['Date-time','Stackframe', 'Both', 'None'],
+
+    // endpoints
     streamEndpoint: "php/api/picture/streampic.php",
     shotEndpoint: "php/api/picture/shotpic.php",
     controlendpoint: "php/api/control/camcontrol.php",
+
     // inputcontrols
     brightness: {
         minval: 0,
