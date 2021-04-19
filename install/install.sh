@@ -58,10 +58,6 @@ else
   sudo mknod system/FIFO p
   sudo chmod 666 system/FIFO
 
-  # setting groups of sitefiles
-  # sudo chgrp -R www-data ${PWD}
-  sudo chown -R www-data:www-data .
-
   #create the media directory
   if [[ ! -d media ]]; then
     sudo mkdir media
@@ -76,8 +72,12 @@ else
     sudo cp install/raspigemcam.overrides.cfg config/raspigemcam.overrides.cfggir
   fi
 
+  # setting groups of sitefiles
+  # sudo chgrp -R www-data ${PWD}
+  sudo chown -R www-data:www-data .
+
   # make directories writable for everyone in the www-data group
-  sudo chmod 775 ${PWD}
+  sudo chmod -R 775 ${PWD}
 
   # notice to reboot if first time install
   echo "If this is a first-time install, please reboot PI"

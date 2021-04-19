@@ -13,7 +13,7 @@ if (isset($_GET['demo']) && intval($_GET['demo']) == 1) {
 	$provider = new RaspicamProvider;
 }
 
-$filename = "";
+$filename = "default.jpg";
 if (isset($_GET['fn'])) $filename = $_GET['fn'];
 
 $provider->getShotImage($filename);
