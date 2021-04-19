@@ -41,15 +41,15 @@ else
   # make pi user part of www-data group so it can write in the web directory
   sudo adduser pi www-data > /dev/null 2>&1
 
+  #create the system directory
+  if [[ ! -d system ]]; then
+    sudo mkdir system
+  fi
+
   # copy the program to system
   sudo cp install/raspigemcam system
   sudo chmod +x system/raspigemcam
   sudo cp install/raspigemcam.cfg system
-
-  #create the media directory
-  if [[ ! -d system ]]; then
-    sudo mkdir system
-  fi
 
   # create the control pipe
   if [ -e system/FIFO ]; then
