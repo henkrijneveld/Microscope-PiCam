@@ -33,13 +33,18 @@ Vue.component("file-name", {
     this.$emit("setfname", this.filename);
   },
   methods: {
+    isAllowed: function(e) {
+      let char = String.fromCharCode(e.keyCode);
+      if (/[a-zA-Z0-9\-\[\]\\=!#$.,:;]/.test(char)) return;
+      e.preventDefault();
+    }
 
   },
   template: `
 <div class="fn-settings">
   <h3 v-if="$slots.default"><slot></slot></h3>
-  <input v-model="name" placeholder="description"><br>
-  <input v-model="extra" placeholder="extra text">
+  <input v-model="name" placeholder="description" @keypress="isAllowed($event)"><br>
+  <input v-model="extra" placeholder="extra text" @keypress="isAllowed($event)">
   <button-bar v-bind:selected.sync="magn" v-bind:buttons="$cfg.magn">Magnification</button-bar>
   <button-bar v-bind:selected.sync="magnfraction" v-bind:buttons="$cfg.magnfraction">Magnification-fraction</button-bar>
   <button-bar v-bind:selected.sync="reduction" v-bind:buttons="$cfg.reduction">Reduction</button-bar>
