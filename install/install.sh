@@ -46,6 +46,11 @@ else
   sudo chmod +x system/raspigemcam
   sudo cp install/raspigemcam.cfg system
 
+  #create the media directory
+  if [[ ! -d system ]]; then
+    sudo mkdir system
+  fi
+
   # create the control pipe
   if [ -e system/FIFO ]; then
     sudo rm system/FIFO
