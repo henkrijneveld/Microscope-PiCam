@@ -7,7 +7,8 @@ Vue.prototype.$cfg = {
     barlow: ['','0.5B','2.0B'],
     polarizer: ['','Pol', 'An', 'Pol+An'],
     immersion: ['','Water', 'Oil', 'Immersion'],
-    sequence: ['Date-time','Stackframe', 'Both', 'None'],
+    objective: [],
+    sequence: ['', 'Date-time','Stackframe', 'Both'],
 
     // endpoints
     streamEndpoint: "php/api/picture/streampic.php",

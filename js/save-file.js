@@ -14,6 +14,7 @@ Vue.component("save-file", {
         var self = this;
         EventBus.$on("resetframecounter", function() {
             self.framenr = 0;
+            EventBus.$emit("framecounter", self.framenr);
         })
     },
     methods: {
@@ -24,6 +25,7 @@ Vue.component("save-file", {
             let fname = this.filename.replace("{datetime}", datum);
             if (fname.includes("{frame}")) {
                 this.framenr += 1;
+                EventBus.$emit("framecounter", this.framenr);
                 fname = fname.replace("{frame}", "#" + this.framenr.toString().padStart(3, "0"));
             }
             fname += ".jpg";
