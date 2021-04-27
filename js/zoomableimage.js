@@ -101,6 +101,9 @@ Vue.component("zoomable-image", {
     doquart: function () {
       this.setupsizes(4);
     },
+    doeight: function () {
+      this.setupsizes(8);
+    },
     dohalf: function () {
       this.setupsizes(0.5);
     },
@@ -155,10 +158,10 @@ Vue.component("zoomable-image", {
     <div class="zi-buttons">
       <button v-on:click="center">Center</button>
       <button v-on:click="dofit">Fit</button>
-      <button v-on:click="dohalf">50%</button>
-      <button v-on:click="dofull">100%</button>
-      <button v-on:click="dodouble">200%</button>
-      <button v-on:click="doquart">400%</button>
+      <button v-on:click="dofull">1x</button>
+      <button v-on:click="dodouble">2x</button>
+      <button v-on:click="doquart">4x</button>
+      <button v-on:click="doeight">8x</button>
       <button style="margin-left: 10px;" v-on:click="changeupdating">{{updatetext}}</button>
       <div style="display: inline-block; border: 1px solid grey; border-radius: 5px; margin-left: 10px; padding: 4px 5px;">
         <div style="display: inline-block; ">zoom: {{ zoomperc }}</div>
