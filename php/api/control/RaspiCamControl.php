@@ -92,6 +92,21 @@ class RaspiCamControl
 		sleep(1); // white balance needs time to settle
 		return true;
 	}
+
+	public function setExposureMode(String $value): bool
+	{
+		if (!in_array($value, [ "off", "auto", "night", "nightpreview", "backlight",
+								"spotlight", "sports", "snow", "beach", "verylong",
+								"fixedfps", "antishake", "fireworks"])) {
+			return false;
+		}
+
+		$cm = "em ".$value;
+
+		if (!$this->send($cm)) return false;
+		sleep(1); // exposure mode may need time to settle
+		return true;
+	}
 }
 
 

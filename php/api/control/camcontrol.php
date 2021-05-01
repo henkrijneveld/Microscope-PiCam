@@ -119,6 +119,13 @@ class controlapi
 		}
 	}
 
+	function setexposuremode($request)
+	{
+		$this->valuecheck($request);
+		if (!$this->cc->setExposureMode($request["value"]))
+			$this->error(400, "error in ".__FUNCTION__);
+	}
+
 	function setredchannel($request)
 	{
 		$this->valuecheck($request);

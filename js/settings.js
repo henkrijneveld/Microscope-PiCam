@@ -7,6 +7,7 @@ Vue.component("settings-pane", {
             contrast: 0,
             redchannel: 393,
             bluechannel: 123,
+            exposuremode: "auto",
             defaultwb: "off",
             manualwb: "ledringtop"
         }
@@ -20,6 +21,7 @@ Vue.component("settings-pane", {
         this.bluechannel = this.getFromLocalStorage("bluechannel", true, 123);
         this.defaultwb = this.getFromLocalStorage("defaultwb", false, "off");
         this.manualwb = this.getFromLocalStorage("manualwb", false, "ledringtop");
+        this.exposuremode = this.getFromLocalStorage("exposuremode", false, "auto");
     },
     watch: {
         defaultwb: function (newwb, oldwb) {
@@ -43,6 +45,9 @@ Vue.component("settings-pane", {
         },
         sharpness: function (newer, old) {
             window.localStorage.setItem("sharpness", newer.toString())
+        },
+        exposuremode: function (newer, old) {
+            window.localStorage.setItem("exposuremode", newer.toString())
         },
         manualwb: function (newer, old) {
             window.localStorage.setItem("manualwb", newer.toString())
@@ -74,11 +79,12 @@ Vue.component("settings-pane", {
     template: `
 <div class="cf-settings">
 <h3 v-if="$slots.default"><slot></slot></h3>
-<number-input v-bind:value.sync="brightness" v-bind="$cfg.brightness">Brightness (0 .. +100)</number-input>
-<number-input v-bind:value.sync="contrast" v-bind="$cfg.contrast">Contrast (-100 .. +100)</number-input>
-<number-input v-bind:value.sync="saturation" v-bind="$cfg.saturation">Saturation (-100 .. +100)</number-input>
-<number-input v-bind:value.sync="sharpness" v-bind="$cfg.sharpness">Sharpness (-100 .. +100)</number-input>
-<select-input v-bind:selected.sync="defaultwb" v-bind:wblist="$cfg.defaultwb.options" v-bind:command="$cfg.defaultwb.command">V4L2 White balance</select-input>
+<number-input v-if="$cfg.brightness.enable" v-bind:value.sync="brightness" v-bind="$cfg.brightness">Brightness (0 .. +100)</number-input>
+<number-input v-if="$cfg.contrast.enable" v-bind:value.sync="contrast" v-bind="$cfg.contrast">Contrast (-100 .. +100)</number-input>
+<number-input v-if="$cfg.saturation.enable" v-bind:value.sync="saturation" v-bind="$cfg.saturation">Saturation (-100 .. +100)</number-input>
+<number-input v-if="$cfg.sharpness.enable" v-bind:value.sync="sharpness" v-bind="$cfg.sharpness">Sharpness (-100 .. +100)</number-input>
+<select-input v-if="$cfg.exposuremode.enable" v-bind:selected.sync="exposuremode" v-bind:wblist="$cfg.exposuremode.options" v-bind:command="$cfg.exposuremode.command">V4L2 Exposure mode</select-input>
+<select-input v-if="$cfg.defaultwb.enable" v-bind:selected.sync="defaultwb" v-bind:wblist="$cfg.defaultwb.options" v-bind:command="$cfg.defaultwb.command">V4L2 White balance</select-input>
 <div :style="defaultwb != 'off' ? 'display: none;' : ''">
 <div class="selectinput">
 <span class="title">Channel presets</span><br>

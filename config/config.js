@@ -7,7 +7,7 @@ Vue.prototype.$cfg = {
     barlow: ['','0.5B','2.0B'],
     polarizer: ['','Pol', 'An', 'Pol+An'],
     immersion: ['','Water', 'Oil', 'Immersion'],
-    objective: [],
+    objective: ['Default', '300x', '6mm', '16mm' ],
     sequence: ['', 'Date-time','Stackframe', 'Both'],
 
     // endpoints
@@ -17,36 +17,43 @@ Vue.prototype.$cfg = {
 
     // inputcontrols
     brightness: {
+        enable: true,
         minval: 0,
         maxval: 100,
         command: "setbrightness"
     },
     contrast: {
+        enable: true,
         minval: -100,
         maxval: 100,
         command: "setcontrast"
     },
     saturation: {
+        enable: true,
         minval: -100,
         maxval: 100,
         command: "setsaturation"
     },
     sharpness: {
+        enable: true,
         minval: -100,
         maxval: 100,
         command: "setsharpness"
     },
     redchannel: {
+        enable: true,
         minval: 0,
         maxval: 800,
         command: "setredchannel"
     },
     bluechannel: {
+        enable: true,
         minval: 0,
         maxval: 800,
         command: "setbluechannel"
     },
     defaultwb: {
+        enable: true,
         options: [
             {value: 'off', text: 'Manual'},
             {value: 'auto', text: 'Auto'},
@@ -62,10 +69,24 @@ Vue.prototype.$cfg = {
         command: 'setwhitebalance'
     },
     manualwb: {
+        enable: true,
         options: [
             {value: 'none', text: 'No whitebalance', red: 150, blue: 150 },
             {value: 'ledringtop', text: 'Top led ring', red: 380, blue: 123 }
         ]
+    },
+    exposuremode: {
+        enable: true,
+        options: [
+            {value: "off", text: 'Off'},
+            {value: "auto", text: "auto"},
+            {value: "night", text: "night"},
+            {value: "nightpreview", text: "nightpreview"},
+            {value: "backlight", text: "backlight"},
+            {value: "spotlight", text: "spotlight"},
+            {value: "verylong", text: "verylong"}
+        ],
+        command: 'setexposuremode'
     }
 }
 
