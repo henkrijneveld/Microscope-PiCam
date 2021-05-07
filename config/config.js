@@ -78,14 +78,14 @@ Vue.prototype.$cfg = {
     exposuremode: {
         enable: true,
         options: [
-            {value: "off", text: 'Off'},
-            {value: "auto", text: "auto"},
+            {value: "off", text: "Off     "},
+            {value: "auto", text: "Auto     "}
+/*            ,
             {value: "night", text: "night"},
-            {value: "nightpreview", text: "nightpreview"},
             {value: "backlight", text: "backlight"},
             {value: "spotlight", text: "spotlight"},
             {value: "verylong", text: "verylong"}
-        ],
+*/        ],
         command: 'setexposuremode'
     }
 }

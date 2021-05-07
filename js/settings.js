@@ -84,11 +84,12 @@ Vue.component("settings-pane", {
 <number-input v-if="$cfg.saturation.enable" v-bind:value.sync="saturation" v-bind="$cfg.saturation">Saturation (-100 .. +100)</number-input>
 <number-input v-if="$cfg.sharpness.enable" v-bind:value.sync="sharpness" v-bind="$cfg.sharpness">Sharpness (-100 .. +100)</number-input>
 <select-input v-if="$cfg.exposuremode.enable" v-bind:selected.sync="exposuremode" v-bind:wblist="$cfg.exposuremode.options" v-bind:command="$cfg.exposuremode.command">V4L2 Exposure mode</select-input>
+<p style="border: 1px solid #bbb; border-radius: 5px; font-size: small; padding: 5px; margin-top: 0; margin-right: 10px;">Hint: start with auto, change to off when settled, play with the light and the controls</p>
 <select-input v-if="$cfg.defaultwb.enable" v-bind:selected.sync="defaultwb" v-bind:wblist="$cfg.defaultwb.options" v-bind:command="$cfg.defaultwb.command">V4L2 White balance</select-input>
 <div :style="defaultwb != 'off' ? 'display: none;' : ''">
 <div class="selectinput">
 <span class="title">Channel presets</span><br>
-<select v-model="manualwb" @change="updatemanualwb(manualwb)">
+<select style="min-width: 200px;" v-model="manualwb" @change="updatemanualwb(manualwb)">
   <option v-for="wboption in $cfg.manualwb.options" v-bind:value="wboption.value">
     {{ wboption.text }}
   </option>
