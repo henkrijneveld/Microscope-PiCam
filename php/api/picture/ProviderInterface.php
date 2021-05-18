@@ -1,4 +1,7 @@
 <?php
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
+
 namespace api\picture;
 
 interface ProviderInterface {

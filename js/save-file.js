@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
+
 Vue.component("save-file", {
     data: function() {
         return {

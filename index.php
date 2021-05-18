@@ -1,4 +1,7 @@
-<?PHP
+<?php
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
+
 // Maybe we will need this someday
 ?>
 <!DOCTYPE html>

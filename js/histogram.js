@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
+
 // algorithm based on public codepen: https://codepen.io/aNNiMON/pen/OqjGVP
 
 Vue.component("histo-gram", {

@@ -1,4 +1,7 @@
 <?php
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
+
 include_once "../../autoloader.php"; // somewhat clunky, acceptable for the time being
 
 use api\control\RaspiCamControl as CamControl;
