@@ -27,6 +27,9 @@ then
   fi
 else
   echo "start install"
+
+  sudo ./stop.sh > /dev/null 2>&1
+
   # Give www-data his bash shell and other authorizations
   sudo sed -i "s/^www-data:x.*/www-data:x:33:33:www-data:\/var\/www:\/bin\/bash/g" /etc/passwd > /dev/null 2>&1
   sudo usermod -aG video www-data

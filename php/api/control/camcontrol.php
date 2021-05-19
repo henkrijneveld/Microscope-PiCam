@@ -85,6 +85,13 @@ class controlapi
 			$this->error(400, "error in ".__FUNCTION__);
 	}
 
+	function setexposurecompensation($request)
+	{
+		$this->valuecheck($request);
+		if (!$this->cc->setExposureCompensation($request["value"]))
+			$this->error(400, "error in ".__FUNCTION__);
+	}
+
 	function setcontrast($request)
 	{
 		$this->valuecheck($request);
@@ -183,4 +190,3 @@ class controlapi
 $api = new controlapi;
 $api->checkrequestmethod();
 $api->processcommand();
-

@@ -29,7 +29,7 @@ Vue.prototype.$cfg = {
         command: "setcontrast"
     },
     saturation: {
-        enable: true,
+        enable: false,
         minval: -100,
         maxval: 100,
         command: "setsaturation"
@@ -39,6 +39,12 @@ Vue.prototype.$cfg = {
         minval: -100,
         maxval: 100,
         command: "setsharpness"
+    },
+    exposurecompensation: {
+        enable: true,
+        minval: -10,
+        maxval: 10,
+        command: "setexposurecompensation"
     },
     redchannel: {
         enable: true,

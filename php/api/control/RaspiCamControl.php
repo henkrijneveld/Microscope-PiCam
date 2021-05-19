@@ -39,6 +39,16 @@ class RaspiCamControl
 		return $this->send($cm);
 	}
 
+	public function setExposureCompensation(int $value): bool
+	{
+		if (($value  < -10) || ($value > 10))
+			return false;
+
+		$cm = "ec ".strval($value);
+
+		return $this->send($cm);
+	}
+
 	public function setSharpness(int $value): bool
 	{
 		if (($value  < -100) || ($value > 100))
@@ -110,5 +120,4 @@ class RaspiCamControl
 		return true;
 	}
 }
-
 
