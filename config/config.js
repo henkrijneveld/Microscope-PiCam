@@ -85,10 +85,9 @@ Vue.prototype.$cfg = {
         enable: true,
         options: [
             {value: "off", text: "Off     "},
-            {value: "auto", text: "Auto     "}
-/*            ,
-            {value: "night", text: "night"},
-            {value: "backlight", text: "backlight"},
+            {value: "auto", text: "Auto     "},
+            {value: "night", text: "Dark   "}
+/*            {value: "backlight", text: "backlight"},
             {value: "spotlight", text: "spotlight"},
             {value: "verylong", text: "verylong"}
 */        ],
@@ -101,6 +100,7 @@ if (location.hostname === "localhost") {
     Vue.prototype.$cfg.shotEndpoint += "?demo=1";
     Vue.prototype.$cfg.controlendpoint += "?demo=1";
 }
+
 
 
 

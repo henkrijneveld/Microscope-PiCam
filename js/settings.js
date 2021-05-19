@@ -26,7 +26,7 @@ Vue.component("settings-pane", {
         this.defaultwb = this.getFromLocalStorage("defaultwb", false, "off");
         this.manualwb = this.getFromLocalStorage("manualwb", false, "ledringtop");
         this.exposuremode = this.getFromLocalStorage("exposuremode", false, "auto");
-        this.exposurecompensation = this.getFromLocalStorage("exposurecompensation", false, 0);
+        this.exposurecompensation = this.getFromLocalStorage("exposurecompensation", true, 0);
     },
     watch: {
         defaultwb: function (newwb, oldwb) {
@@ -92,8 +92,8 @@ Vue.component("settings-pane", {
 <number-input v-if="$cfg.saturation.enable" v-bind:value.sync="saturation" v-bind="$cfg.saturation">Saturation (-100 .. +100)</number-input>
 <number-input v-if="$cfg.sharpness.enable" v-bind:value.sync="sharpness" v-bind="$cfg.sharpness">Sharpness (-100 .. +100)</number-input>
 <select-input v-if="$cfg.exposuremode.enable" v-bind:selected.sync="exposuremode" v-bind:wblist="$cfg.exposuremode.options" v-bind:command="$cfg.exposuremode.command">V4L2 Exposure mode</select-input>
-<p style="border: 1px solid #bbb; border-radius: 5px; font-size: small; padding: 5px; margin-top: 0; margin-right: 10px;">Hint: start with auto, change to off when settled, play with the light and the controls</p>
-<number-input v-if="$cfg.exposurecompensation.enable" v-bind:value.sync="exposurecompensation" v-bind="$cfg.exposurecompensation">Exposure compensation (-10 .. +10)</number-input>
+<p style="border: 1px solid #bbb; border-radius: 5px; font-size: small; padding: 5px; margin-top: 0; margin-right: 10px;">Hint: start with auto / dark, use compensation (if necessary) change to off when settled, then play with light and controls</p>
+<number-input :style="exposuremode == 'off' ? 'display: none;' : ''" v-if="$cfg.exposurecompensation.enable" v-bind:value.sync="exposurecompensation" v-bind="$cfg.exposurecompensation">Exposure compensation (-10 .. +10)</number-input>
 <select-input v-if="$cfg.defaultwb.enable" v-bind:selected.sync="defaultwb" v-bind:wblist="$cfg.defaultwb.options" v-bind:command="$cfg.defaultwb.command">V4L2 White balance</select-input>
 <div :style="defaultwb != 'off' ? 'display: none;' : ''">
 <div class="selectinput">
@@ -110,3 +110,4 @@ Vue.component("settings-pane", {
 </div>
 `
 })
+
