@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+# SPDX-License-Identifier: MIT
+
 PUT http://cam1/gemcam/php/api/control/camcontrol.php
 Accept: application/json
 

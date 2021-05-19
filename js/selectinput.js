@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
+
 Vue.component("select-input", {
     data: function() {
         return {
@@ -46,7 +49,7 @@ Vue.component("select-input", {
     template: `
 <div class="selectinput">
 <span class="title"><slot></slot></span><br>
-<select v-model="sel" @change="updatevalue()">
+<select style="min-width: 200px;" v-model="sel" @change="updatevalue()">
   <option v-for="wboption in wblist" v-bind:value="wboption.value">
     {{ wboption.text }}
   </option>

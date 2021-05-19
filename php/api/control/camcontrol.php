@@ -1,4 +1,7 @@
 <?php
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
+
 include_once "../../autoloader.php"; // somewhat clunky, acceptable for the time being
 
 use api\control\RaspiCamControl as CamControl;
@@ -82,6 +85,13 @@ class controlapi
 			$this->error(400, "error in ".__FUNCTION__);
 	}
 
+	function setexposurecompensation($request)
+	{
+		$this->valuecheck($request);
+		if (!$this->cc->setExposureCompensation($request["value"]))
+			$this->error(400, "error in ".__FUNCTION__);
+	}
+
 	function setcontrast($request)
 	{
 		$this->valuecheck($request);
@@ -117,6 +127,13 @@ class controlapi
 				$this->cc->setchannels($red, $blue);
 			}
 		}
+	}
+
+	function setexposuremode($request)
+	{
+		$this->valuecheck($request);
+		if (!$this->cc->setExposureMode($request["value"]))
+			$this->error(400, "error in ".__FUNCTION__);
 	}
 
 	function setredchannel($request)
@@ -173,4 +190,3 @@ class controlapi
 $api = new controlapi;
 $api->checkrequestmethod();
 $api->processcommand();
-

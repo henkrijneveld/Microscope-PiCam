@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
+
 var EventBus = new Vue();
 
 var vm = new Vue({

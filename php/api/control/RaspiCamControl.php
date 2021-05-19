@@ -1,4 +1,6 @@
 <?php
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
 
 namespace api\control;
 
@@ -33,6 +35,16 @@ class RaspiCamControl
 			return false;
 
 		$cm = "br ".strval($value);
+
+		return $this->send($cm);
+	}
+
+	public function setExposureCompensation(int $value): bool
+	{
+		if (($value  < -10) || ($value > 10))
+			return false;
+
+		$cm = "ec ".strval($value);
 
 		return $this->send($cm);
 	}
@@ -92,6 +104,20 @@ class RaspiCamControl
 		sleep(1); // white balance needs time to settle
 		return true;
 	}
-}
 
+	public function setExposureMode(String $value): bool
+	{
+		if (!in_array($value, [ "off", "auto", "night", "nightpreview", "backlight",
+								"spotlight", "sports", "snow", "beach", "verylong",
+								"fixedfps", "antishake", "fireworks"])) {
+			return false;
+		}
+
+		$cm = "em ".$value;
+
+		if (!$this->send($cm)) return false;
+		sleep(1); // exposure mode may need time to settle
+		return true;
+	}
+}
 

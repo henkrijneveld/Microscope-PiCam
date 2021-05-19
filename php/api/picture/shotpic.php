@@ -1,4 +1,7 @@
 <?php
+// SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
+// SPDX-License-Identifier: MIT
+
 // debughelper on in fireox
 // error in server
 // for next time
