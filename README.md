@@ -19,13 +19,14 @@ These are more or less generic instructions, they are here to have a guide at ha
   (https://www.raspberrypi.org/documentation/installation/installing-images/)
   - NOTE: Allthough headless configuration is possible, it is my experience that the first setup should be done
     with keyboard and monitor connected. This way errors by yourself, or by the PI, or errors in the OS are much easier to detect.
+- Enable SSH (https://www.raspberrypi.org/documentation/remote-access/ssh/), by placing an empty file "ssh" in the
+  boot partition of the SD card
+- Enable headless wifi (https://www.raspberrypi.org/documentation/configuration/wireless/headless.md)
+- Put SD card in PI and login to the PI (preferably with keyboard and monitor attached)
 - To enable setting a simple password, use:
   ```
   sudo passwd pi
   ```
-- Enable SSH (https://www.raspberrypi.org/documentation/remote-access/ssh/), by placing an empty file "ssh" in the
-  boot partition of the SD card
-- Enable headless wifi (https://www.raspberrypi.org/documentation/configuration/wireless/headless.md)
 - Use:
   ```
   sudo raspi-config
@@ -51,8 +52,16 @@ will bind the MAC adress to a fixed IP in the router, and use a symbolic name in
 Install two necessary applications:
 - Git for installing and updating. Of course you could also download a zip, but upgrading later is 
   easier this way. And installing Git is very simple (https://linuxize.com/post/how-to-install-git-on-raspberry-pi/).
-- Install Apache and PHP (https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md).
+- Install Apache and PHP (https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md). Remove the 
+index.html file as instructed:
+  ```
+  sudo rm /var/www/html/index.html
+  ```  
+  If there were no errors during installation, you can skip
+  the part where a test version of the index.php is made.
 If you want to use virtual hosts, consult the documentation on raspberry.org.
+- Fire a webbrowser on a remote system, and enter the IP (or your name from the hosts file) in the
+address bar like http://\<ip number\> A Page with "Index of" must be shown now.
 
 ## Installation Microscope-PiCam
 
@@ -69,12 +78,20 @@ cd gemcam
 cd install
 sudo ./install.sh
 ```
-
+If it is the first time gemcam is installed, reboot:
+```
+sudo shutdown -r now
+```
 Go to your browser:
 ```
 http://<ip or name of connected pi>/gemcam
 ```
-Then click the Start Camera button. A picture should be visible (if camera attached).
+Then click the Start Camera button. A picture should be visible (if camera attached and enough light).
+Sometimes the camera needs some time and won't adjust to the lighting. Push ctrl+F5 to reload the page
+and restart the camera.
+
+If the white balance won't work, switch to auto and manual and back. The Camera
+is very picky on the sequence in which commands are sent.
 
 Errors? open the console log in your browser (F12 key)
 
