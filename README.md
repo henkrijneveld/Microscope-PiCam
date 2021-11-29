@@ -16,7 +16,6 @@ These are more or less generic instructions, they are here to have a guide at ha
 
 - Use a raspberry Pi 3B+ (or better), with a casing
 - Install Raspberry PI OS (32bit), preferrably the light version without the desktop ("headless mode")
-  *WARNING: USE BUSTER IMAGE, NOT BULLSEYE! THE NOOBS @RASPBERRYPI MADE BREAKING CHANGES TO THE CAMERA EXOSYSTEM*
   (https://www.raspberrypi.org/documentation/installation/installing-images/)
   - NOTE: Allthough headless configuration is possible, it is my experience that the first setup should be done
     with keyboard and monitor connected. This way errors by yourself, or by the PI, or errors in the OS are much easier to detect.
@@ -43,12 +42,22 @@ These are more or less generic instructions, they are here to have a guide at ha
 After this start the Pi and use it in headless mode. It is sometimes a pain to find the IP of the Pi. Usually I
 will bind the MAC adress to a fixed IP in the router, and use a symbolic name in the HOSTS file on my PC.
 
-- Enable the camera with raspi-config. Test with raspistill (https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspistill.md).
+- Enable the camera with raspi-config. 
+
+- *When using raspios buster:* Test with raspistill (https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspistill.md).
   ```
   raspistill -t 1 -o cam.jpg
   ``` 
   If no errors are shown, and a file cam.jpg is written, all is well.
+
+- *When using raspios bullseye:* Test with libcamera-jpeg: https://www.tomshardware.com/how-to/use-raspberry-pi-camera-with-bullseye
+  ```
+  libcamera-jpeg -o test.jpg
+  ``` 
+  If no errors are shown, and a file cam.jpg is written, the camera is connect.
   
+- *Bullseye only(!):*: the old working camerastack must be activated. It will replace the non functional libcamera stack. Do the following in the /boot/config.txt: Edit /boot/config.txt, remove the line "camera_auto_detect=1", and add "start_x=1" and "gpu_mem=128" (for background info read: https://forums.raspberrypi.com/viewtopic.php?t=323390) Gemcam will work now, raspistill and libcamera-jpeg won't.
+
 
 Install two necessary applications:
 - Git for installing and updating. Of course you could also download a zip, but upgrading later is 
