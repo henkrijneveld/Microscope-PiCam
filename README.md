@@ -62,7 +62,7 @@ will bind the MAC adress to a fixed IP in the router, and use a symbolic name in
 Install two necessary applications:
 - Git for installing and updating. Of course you could also download a zip, but upgrading later is 
   easier this way. And installing Git is very simple (https://linuxize.com/post/how-to-install-git-on-raspberry-pi/).
-- Install Apache and PHP (https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md). Remove the 
+- Install Apache and PHP (https://www.raspberrypi.org/documentation/computers/remote-access.html#setting-up-an-apache-web-server). Remove the 
 index.html file as instructed:
   ```
   sudo rm /var/www/html/index.html
