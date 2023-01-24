@@ -16,7 +16,7 @@ These are more or less generic instructions, they are here to have a guide at ha
 
 - Use a raspberry Pi 3B+ (or better), with a casing
 - Install Raspberry PI OS (32bit), preferrably the light version without the desktop ("headless mode")
-  (https://www.raspberrypi.org/documentation/installation/installing-images/)
+  (https://www.raspberrypi.org/documentation/installation/installing-images/), use the legacy Debian Buster variant.
   - NOTE: Allthough headless configuration is possible, it is my experience that the first setup should be done
     with keyboard and monitor connected. This way errors by yourself, or by the PI, or errors in the OS are much easier to detect.
 - Enable SSH (https://www.raspberrypi.org/documentation/remote-access/ssh/), by placing an empty file "ssh" in the
