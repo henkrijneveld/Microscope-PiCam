@@ -40,6 +40,12 @@ Vue.prototype.$cfg = {
         maxval: 100,
         command: "setsharpness"
     },
+    shutterspeed: {
+        enable: true,
+        minval: 0,
+        maxval: 20,
+        command: "setshutterspeed"
+    },
     exposurecompensation: {
         enable: true,
         minval: -10,
@@ -86,7 +92,7 @@ Vue.prototype.$cfg = {
         options: [
             {value: "off", text: "Off     "},
             {value: "auto", text: "Auto     "},
-            {value: "night", text: "Dark   "}
+            {value: "verylong", text: "Dark   "}
 /*            {value: "backlight", text: "backlight"},
             {value: "spotlight", text: "spotlight"},
             {value: "verylong", text: "verylong"}

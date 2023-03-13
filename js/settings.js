@@ -13,7 +13,8 @@ Vue.component("settings-pane", {
             exposuremode: "auto",
             exposurecompensation: 0,
             defaultwb: "off",
-            manualwb: "ledringtop"
+            manualwb: "ledringtop",
+            shutterspeed: 0
         }
     },
     created: function() {
@@ -27,6 +28,7 @@ Vue.component("settings-pane", {
         this.manualwb = this.getFromLocalStorage("manualwb", false, "ledringtop");
         this.exposuremode = this.getFromLocalStorage("exposuremode", false, "auto");
         this.exposurecompensation = this.getFromLocalStorage("exposurecompensation", true, 0);
+        this.shutterspeed = this.getFromLocalStorage("shutterspeed", true, 0);
     },
     watch: {
         defaultwb: function (newwb, oldwb) {
@@ -65,6 +67,9 @@ Vue.component("settings-pane", {
         },
         bluechannel: function (newer, old) {
             window.localStorage.setItem("bluechannel", newer.toString())
+        },
+        shutterspeed: function (newer, old) {
+            window.localStorage.setItem("shutterspeed", newer.toString())
         }
     },
     methods: {
@@ -93,6 +98,9 @@ Vue.component("settings-pane", {
 <number-input v-if="$cfg.sharpness.enable" v-bind:value.sync="sharpness" v-bind="$cfg.sharpness">Sharpness (-100 .. +100)</number-input>
 <select-input v-if="$cfg.exposuremode.enable" v-bind:selected.sync="exposuremode" v-bind:wblist="$cfg.exposuremode.options" v-bind:command="$cfg.exposuremode.command">V4L2 Exposure mode</select-input>
 <p style="border: 1px solid #bbb; border-radius: 5px; font-size: small; padding: 5px; margin-top: 0; margin-right: 10px;">Hint: start with auto / dark, use compensation (if necessary) change to off when settled, then play with light and controls</p>
+<div :style="exposuremode != 'off' ? 'display: none;' : ''">
+<number-input v-if="$cfg.shutterspeed.enable" v-bind:value.sync="shutterspeed" v-bind="$cfg.shutterspeed">Shutterspeed (0 .. 20 seconds)</number-input>
+</div>
 <number-input :style="exposuremode == 'off' ? 'display: none;' : ''" v-if="$cfg.exposurecompensation.enable" v-bind:value.sync="exposurecompensation" v-bind="$cfg.exposurecompensation">Exposure compensation (-10 .. +10)</number-input>
 <select-input v-if="$cfg.defaultwb.enable" v-bind:selected.sync="defaultwb" v-bind:wblist="$cfg.defaultwb.options" v-bind:command="$cfg.defaultwb.command">V4L2 White balance</select-input>
 <div :style="defaultwb != 'off' ? 'display: none;' : ''">

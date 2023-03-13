@@ -132,9 +132,21 @@ class controlapi
 	function setexposuremode($request)
 	{
 		$this->valuecheck($request);
+
 		if (!$this->cc->setExposureMode($request["value"]))
 			$this->error(400, "error in ".__FUNCTION__);
+        $this->setchannel('exposuremode', $request["value"]);
 	}
+
+    function setshutterspeed($request)
+    {
+        // shutterspeed will be activated with takeimage
+        $this->valuecheck($request);
+        $this->setchannel("shutterspeed", $request["value"]);
+
+//        if (!$this->cc->setShutterSpeed($request["value"]))
+//            $this->error(400, "error in ".__FUNCTION__);
+    }
 
 	function setredchannel($request)
 	{

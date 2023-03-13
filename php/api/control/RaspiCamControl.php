@@ -24,7 +24,18 @@ class RaspiCamControl
 
 	public function takeImage(): bool
 	{
-		$succes = $this->send("im");
+        $shutterspeed = 0;
+        $expmode = $this->getchannel("exposuremode");
+        if ($expmode != -1 && substr($expmode, 0, 3) == "off") {
+            $shutterspeed = $this->getchannel("shutterspeed");
+            if ($shutterspeed == -1) {
+                $shutterspeed = 0;
+            } else {
+                $shutterspeed = intval($shutterspeed);
+            }
+        }
+
+		$succes = $this->send("im ".strval($shutterspeed));
 		sleep(1);
 		return $succes;
 	}
@@ -69,7 +80,23 @@ class RaspiCamControl
 		return $this->send($cm);
 	}
 
-	public function setSaturation(int $value): bool
+    public function setShutterSpeed(int $value): bool
+    {
+        if (($value  < 0) || ($value > 20))
+            return false;
+
+        if ($value > 0) {
+            $cm = "is 200";
+            $this->send($cm);
+            sleep(1);
+        }
+
+        $cm = "ss ".strval($value)."000000";
+
+        return $this->send($cm);
+    }
+
+    public function setSaturation(int $value): bool
 	{
 		if (($value  < -100) || ($value > 100))
 			return false;
@@ -119,5 +146,19 @@ class RaspiCamControl
 		sleep(1); // exposure mode may need time to settle
 		return true;
 	}
+
+    // kludge: value -1: error will die.
+    private function getchannel($channelname)
+    {
+        if (!file_exists(Config::getMemPath()."/".$channelname))
+            return -1;
+        $fp = fopen(Config::getMemPath()."/".$channelname, "r");
+        if ($fp) {
+            $value = fread($fp,10);
+            fclose($fp);
+            return $value;
+        }
+        return -1;
+    }
 }
 
