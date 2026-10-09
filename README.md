@@ -1,5 +1,12 @@
 # Microscope-PiCam: Use HQ Cam with microscope
 
+> [!WARNING]
+>This is a legacy and unsupported and abandoned product. If you want to use the HQ camera on Trixie, install Microscope-Picam2:
+[Repository Microscope Picam2](https://github.com/henkrijneveld/Microscope-Picam2).
+
+> [!NOTE]
+>I renamed the software to MicroRaps :)
+
 Webbased application for the Raspberry Pi and the 12 MP HQ camera for taking stills, especially tailored
 for the use with a (gemmological) microscope, but it is not limited to this.
 
