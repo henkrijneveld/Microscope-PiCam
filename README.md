@@ -2,7 +2,7 @@
 
 > [!WARNING]
 >This is a legacy and unsupported and abandoned product. If you want to use the HQ camera on Trixie, install MicroPiHQ
-[Repository Microscope Picam2](https://github.com/henkrijneveld/MicroPiHQ).
+[Repository MicroPiHQ](https://github.com/henkrijneveld/MicroPiHQ).
 
 > [!NOTE]
 >I renamed the software to MicroRasp :)
