@@ -1,4 +1,10 @@
 <?php
+
+
+// WARNING: This repository is legacy and unsupported. 
+// A brand new, Vue & Picamera2 based version is available at:
+// https://github.com/henkrijneveld/MicroPiHQ
+
 // SPDX-FileCopyrightText: 2021- Henk Rijneveld <henk@henkrijneveld.nl>
 // SPDX-License-Identifier: MIT
 
